@@ -1,8 +1,12 @@
+import config from 'config';
 import BootScene from 'Scenes/BootScene';
 import GameScene from 'Scenes/GameScene';
 
-const width = Math.floor(window.innerWidth * window.devicePixelRatio * 0.8);
-const height = Math.floor(window.innerHeight * window.devicePixelRatio * 0.8);
+const width = config.width;
+const height = config.height;
+
+GameScene.setWidth(width);
+GameScene.setHeight(height);
 
 const gameConfig = {
 	type: Phaser.AUTO,

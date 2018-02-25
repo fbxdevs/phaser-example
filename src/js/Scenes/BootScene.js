@@ -9,6 +9,11 @@ class BootScene extends Phaser.Scene {
 
 	create() {
 		this.scene.start('BootScene');
+		console.log('Booting...');
+
+		setTimeout(() => {
+			this.scene.start('GameScene');
+		}, 500);
 	}
 }
 

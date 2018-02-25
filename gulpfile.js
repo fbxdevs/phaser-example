@@ -139,7 +139,7 @@ gulp.task('sass', () => {
 	.pipe(autoprefixer({
 		browsers: ['last 3 versions'],
 	}))
-	.pipe(concat('app.css'))
+	.pipe(concat('game.css'))
 	.pipe(cssmin())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('docs/css'))

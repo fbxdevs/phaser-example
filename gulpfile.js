@@ -21,7 +21,7 @@ let open = require('open');
 
 let livereload = require('gulp-livereload');
 
-app.use(express.static(`${__dirname}/dist`));
+app.use(express.static(`${__dirname}/docs`));
 
 let getSymverFromPackage = () => {
 	let pkg = require('./package.json');
@@ -102,15 +102,15 @@ gulp.task('compile-scripts', ['lint-scripts'], () => {
 	})
 	.pipe(source('game.js'))
 	.pipe(plumber())
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('docs/js'));
 });
 
 gulp.task('min-scripts', ['compile-scripts'], () => {
-	return gulp.src(['dist/js/game.js'])
+	return gulp.src(['docs/js/game.js'])
 	.pipe(plumber())
 	.pipe(uglify())
 	.pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('docs/js'))
     .pipe(livereload());
 });
 
@@ -128,7 +128,7 @@ gulp.task('min-html', () => {
 		removeOptionalTags: true,
 		removeRedundantAttributes: true,
 	}))
-	.pipe(gulp.dest('dist'))
+	.pipe(gulp.dest('docs'))
 	.pipe(livereload());
 });
 
@@ -142,7 +142,7 @@ gulp.task('sass', () => {
 	.pipe(concat('app.css'))
 	.pipe(cssmin())
 	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('dist/css'))
+	.pipe(gulp.dest('docs/css'))
 	.pipe(livereload());
 });
 
@@ -155,7 +155,7 @@ gulp.task('fonts', () => {
 		fontDir + '*.svg',
 		fontDir + '*.eot'])
 	.pipe(plumber())
-	.pipe(gulp.dest('dist/fonts'))
+	.pipe(gulp.dest('docs/fonts'))
 	.pipe(livereload());
 });
 
@@ -163,7 +163,7 @@ gulp.task('min-image', () => {
 	return gulp.src('src/img/**/*')
 	.pipe(plumber())
 	.pipe(imagemin())
-	.pipe(gulp.dest('dist/img'))
+	.pipe(gulp.dest('docs/img'))
 	.pipe(livereload());
 });
 
@@ -214,7 +214,7 @@ gulp.task('watch-img', () => {
 gulp.task('livereload', () => {
 	livereload.listen({
 		start: true,
-		reloadPage: 'dist/index.html',
+		reloadPage: 'docs/index.html',
 	});
 });
 

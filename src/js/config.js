@@ -1,24 +1,18 @@
-let width = Math.floor(window.innerWidth * window.devicePixelRatio * 0.95);
+const width = Math.floor(window.innerWidth * window.devicePixelRatio * 0.95);
 let height = Math.floor(window.innerHeight * window.devicePixelRatio * 0.95);
 
-const modulus = (n, k) => {
-	let iters = 0;
+const ENV_WIDTH = 1024;
+const ENV_HEIGHT = 184;
 
-	while(n > k) {
-		iters++;
-		n -= k;
-	}
+height = Math.floor((ENV_HEIGHT * width) / ENV_WIDTH);
 
-	return iters;
-};
+const scaleX = width / ENV_WIDTH;
+const scaleY = height / ENV_HEIGHT;
 
-const TILE_SCALE = 0.125;
-
-width = (modulus(width, 128 * TILE_SCALE) * 128 * TILE_SCALE);
-height = (modulus(height, 128 * TILE_SCALE) * 128 * TILE_SCALE);
 
 export default {
 	width,
 	height,
-	TILE_SCALE,
+	scaleX,
+	scaleY,
 };

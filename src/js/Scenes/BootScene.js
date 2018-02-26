@@ -12,7 +12,7 @@ class BootScene extends Phaser.Scene {
 		console.log('Booting...');
 
 		setTimeout(() => {
-			this.scene.start('GameScene');
+			this.scene.start('MenuScene');
 		}, 500);
 	}
 }

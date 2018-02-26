@@ -1,5 +1,6 @@
 import config from 'config';
 import BootScene from 'Scenes/BootScene';
+import MenuScene from 'Scenes/MenuScene';
 import GameScene from 'Scenes/GameScene';
 
 const width = config.width;
@@ -15,6 +16,7 @@ const gameConfig = {
 	height,
 	scene: [
 		BootScene,
+		MenuScene,
 		GameScene,
 	],
 };

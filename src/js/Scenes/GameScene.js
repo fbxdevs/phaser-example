@@ -1,4 +1,5 @@
 import config from 'config';
+import Marco from 'characters/Marco';
 
 class GameScene extends Phaser.Scene {
 	constructor() {
@@ -20,33 +21,37 @@ class GameScene extends Phaser.Scene {
 
 		this.width = GameScene.width;
 		this.height = GameScene.height;
+		this.player = new Marco(this);
 	}
 
 	preload() {
-		this.load.image('blackTile', 'img/tiles/black.png');
-		this.load.image('blueTile', 'img/tiles/blue.png');
-		this.load.image('brownTile', 'img/tiles/brown.png');
-		this.load.image('greenTile', 'img/tiles/green.png');
-		this.load.image('greyTile', 'img/tiles/grey.png');
-		this.load.image('indigoTile', 'img/tiles/indigo.png');
-		this.load.image('orangeTile', 'img/tiles/orange.png');
-		this.load.image('pinkTile', 'img/tiles/pink.png');
-		this.load.image('purpleTile', 'img/tiles/purple.png');
-		this.load.image('redTile', 'img/tiles/red.png');
-		this.load.image('yellowTile', 'img/tiles/yellow.png');
+		this.load.image('background', 'img/backgrounds/background.png');
+		this.load.image('tracks', 'img/backgrounds/tracks.png');
+		this.load.image('trains', 'img/backgrounds/trains.png');
+
+		this.player.preload();
 	}
 
 	create() {
 		this.scene.start('GameScene');
 		console.log('Game started!');
 
-		for(let i = 0; i < GameScene.width / (128 * config.TILE_SCALE); i++) {
-			for(let j = 0; j < GameScene.height / (128 * config.TILE_SCALE); j++) {
-				const index = Math.floor(Math.random() * GameScene.TILES.length);
-				const img = this.add.image(i * (128 * config.TILE_SCALE) + (64 * config.TILE_SCALE), j * (128 * config.TILE_SCALE) + (64 * config.TILE_SCALE), GameScene.TILES[index]);
-				img.setScale(config.TILE_SCALE, config.TILE_SCALE);
-			}
-		}
+		const background = this.add.image(0, 0, 'background');
+		background.setOrigin(0, 0);
+		background.scaleX = config.scaleX;
+		background.scaleY = config.scaleY;
+
+		const trainGroup = this.physics.add.staticGroup();
+		const trains = trainGroup.create(0, 0, 'trains');
+		trains.setOrigin(0, 0);
+		trains.scaleX = config.scaleX;
+		trains.scaleY = config.scaleY;
+
+		this.player.create();
+	}
+
+	update() {
+		this.player.update();
 	}
 
 	static setWidth(width) {
@@ -57,19 +62,5 @@ class GameScene extends Phaser.Scene {
 		GameScene.height = height;
 	}
 }
-
-GameScene.TILES = [
-	'redTile',
-	'orangeTile',
-	'yellowTile',
-	'greenTile',
-	'blueTile',
-	'indigoTile',
-	'blackTile',
-	'brownTile',
-	'greyTile',
-	'pinkTile',
-	'purpleTile',
-];
 
 export default GameScene;

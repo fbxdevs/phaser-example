@@ -58,7 +58,6 @@ class Marco {
 	preload() {
 		this.scene.load.spritesheet('marcoLegs', 'img/marco/marco_legs.png', {frameWidth: 116, frameHeight: 52});
 		this.scene.load.spritesheet('marcoTorso', 'img/marco/marco_torso.png', {frameWidth: 116, frameHeight: 52});
-		this.scene.load.spritesheet('marcoDie', 'img/marco/marco_die.png', {frameWidth: 116, frameHeight: 52});
 	}
 
 	create() {

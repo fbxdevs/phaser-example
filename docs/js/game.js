@@ -101,7 +101,6 @@ var GameScene = function (_Phaser$Scene) {
 		key: 'preload',
 		value: function preload() {
 			this.load.image('background', 'img/backgrounds/background.png');
-			this.load.image('tracks', 'img/backgrounds/tracks.png');
 			this.load.image('trains', 'img/backgrounds/trains.png');
 
 			this.player.preload();
@@ -271,7 +270,6 @@ var Marco = function () {
 		value: function preload() {
 			this.scene.load.spritesheet('marcoLegs', 'img/marco/marco_legs.png', { frameWidth: 116, frameHeight: 52 });
 			this.scene.load.spritesheet('marcoTorso', 'img/marco/marco_torso.png', { frameWidth: 116, frameHeight: 52 });
-			this.scene.load.spritesheet('marcoDie', 'img/marco/marco_die.png', { frameWidth: 116, frameHeight: 52 });
 		}
 	}, {
 		key: 'create',

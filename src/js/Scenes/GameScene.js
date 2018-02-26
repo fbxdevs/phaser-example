@@ -26,7 +26,6 @@ class GameScene extends Phaser.Scene {
 
 	preload() {
 		this.load.image('background', 'img/backgrounds/background.png');
-		this.load.image('tracks', 'img/backgrounds/tracks.png');
 		this.load.image('trains', 'img/backgrounds/trains.png');
 
 		this.player.preload();
